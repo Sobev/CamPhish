@@ -3,7 +3,12 @@ pipeline {
   stages {
     stage('docker tag') {
       steps {
-        sh 'git pull'
+        sh '''git pull
+
+docker build -f ./Dockerfile -t oppf-api:202302081 .
+docker tag oppf-api:202302081 sobev/oppf-api:202302081
+docker login -u sobev -p dckr_pat_5Zf44zQpMGDrKEA9vkt4ClFKxLo
+docker push oppf-api:202302081'''
       }
     }
 
